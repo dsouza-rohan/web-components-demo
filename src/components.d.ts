@@ -20,6 +20,8 @@ export namespace Components {
         "show": boolean;
         "text": string;
     }
+    interface RjSpinner {
+    }
     interface RjStockFinder {
     }
     interface RjStockPrice {
@@ -53,6 +55,12 @@ declare global {
         prototype: HTMLRjSimpleTooltipElement;
         new (): HTMLRjSimpleTooltipElement;
     };
+    interface HTMLRjSpinnerElement extends Components.RjSpinner, HTMLStencilElement {
+    }
+    var HTMLRjSpinnerElement: {
+        prototype: HTMLRjSpinnerElement;
+        new (): HTMLRjSpinnerElement;
+    };
     interface HTMLRjStockFinderElement extends Components.RjStockFinder, HTMLStencilElement {
     }
     var HTMLRjStockFinderElement: {
@@ -81,6 +89,7 @@ declare global {
         "rj-side-drawer": HTMLRjSideDrawerElement;
         "rj-simple-modal": HTMLRjSimpleModalElement;
         "rj-simple-tooltip": HTMLRjSimpleTooltipElement;
+        "rj-spinner": HTMLRjSpinnerElement;
         "rj-stock-finder": HTMLRjStockFinderElement;
         "rj-stock-price": HTMLRjStockPriceElement;
         "rj-todo-list": HTMLRjTodoListElement;
@@ -98,6 +107,8 @@ declare namespace LocalJSX {
     interface RjSimpleTooltip {
         "show"?: boolean;
         "text"?: string;
+    }
+    interface RjSpinner {
     }
     interface RjStockFinder {
         "onRjSymbolSelected"?: (event: CustomEvent<string>) => void;
@@ -119,6 +130,7 @@ declare namespace LocalJSX {
         "rj-side-drawer": RjSideDrawer;
         "rj-simple-modal": RjSimpleModal;
         "rj-simple-tooltip": RjSimpleTooltip;
+        "rj-spinner": RjSpinner;
         "rj-stock-finder": RjStockFinder;
         "rj-stock-price": RjStockPrice;
         "rj-todo-list": RjTodoList;
@@ -132,6 +144,7 @@ declare module "@stencil/core" {
             "rj-side-drawer": LocalJSX.RjSideDrawer & JSXBase.HTMLAttributes<HTMLRjSideDrawerElement>;
             "rj-simple-modal": LocalJSX.RjSimpleModal & JSXBase.HTMLAttributes<HTMLRjSimpleModalElement>;
             "rj-simple-tooltip": LocalJSX.RjSimpleTooltip & JSXBase.HTMLAttributes<HTMLRjSimpleTooltipElement>;
+            "rj-spinner": LocalJSX.RjSpinner & JSXBase.HTMLAttributes<HTMLRjSpinnerElement>;
             "rj-stock-finder": LocalJSX.RjStockFinder & JSXBase.HTMLAttributes<HTMLRjStockFinderElement>;
             "rj-stock-price": LocalJSX.RjStockPrice & JSXBase.HTMLAttributes<HTMLRjStockPriceElement>;
             "rj-todo-list": LocalJSX.RjTodoList & JSXBase.HTMLAttributes<HTMLRjTodoListElement>;

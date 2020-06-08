@@ -16,6 +16,7 @@ export class StockPrice {
     @State() fetchedPrice : number;
     @State() stockUserInput: string;
     @State() stockUserValid: boolean;
+    @State() loading: boolean = false;
 
     @Prop({mutable:true, reflectToAttr:true}) stockSymbol: string;
     
@@ -48,6 +49,7 @@ export class StockPrice {
     }
 
     fetchStockPrice(stockSym: string ){
+        this.loading = true;
         fetch(
             `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${stockSym}&apikey=${AV_API_KEY}`
         )
@@ -57,9 +59,11 @@ export class StockPrice {
                 //console.log(parsed);
 
                 this.fetchedPrice = +parsed['Global Quote']['05. price'];
+                this.loading = false;
             })
             .catch(err => {
                 console.log(err);
+                this.loading = false;
             });
     }
 
@@ -91,8 +95,20 @@ export class StockPrice {
     componentDidUnload() { 
         console.log('componentDidUnload')
     }
+    hostData() {
+        return { class: this.stockUserValid ? "" : "error"}
+    }
 
     render(){
+        let dataContent = <p>Please enter a symbol!!</p>
+
+        if (this.fetchedPrice){
+            dataContent = <p>Price: {this.fetchedPrice}%</p>
+        }
+        if(this.loading){
+            dataContent = <rj-spinner />
+        }
+
         return[
             <form onSubmit={this.onSubmitHandler.bind(this)}>
                 <input type="text" 
@@ -100,11 +116,11 @@ export class StockPrice {
                 id="stock-symbol"
                 value={this.stockUserInput}
                     onInput={this.onUserInput.bind(this)} />
-                <button type="submit" disabled={!this.stockUserValid}>Fetch</button>
+                <button type="submit" disabled={!this.stockUserValid || this.loading}>Fetch</button>
             </form>
             ,
             <div>
-                <p>Price: {this.fetchedPrice}%</p>
+                {dataContent}
             </div>
         ];
     }

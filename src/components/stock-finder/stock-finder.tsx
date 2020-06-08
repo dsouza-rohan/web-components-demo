@@ -9,6 +9,7 @@ import { AV_API_KEY } from '../../global/global'
 export class StockFinder{
 
     stockNameInput: HTMLInputElement;
+    @State() loading: boolean = false;
 
     @Event({bubbles:true, composed: true}) rjSymbolSelected: EventEmitter<string>;
     
@@ -19,6 +20,7 @@ export class StockFinder{
         event.preventDefault();
 
         const stockName = this.stockNameInput.value;
+        this.loading = true;
 
         fetch(
             `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${stockName}&apikey=${AV_API_KEY}`
@@ -30,9 +32,11 @@ export class StockFinder{
                 this.searchResults = parsRes['bestMatches'].map(match => {
                     return { name: match['2. name'], symbol: match['1. symbol']};
                 });
+                this.loading = false;
             })
             .catch(err => {
                 console.log(err);
+                this.loading = false;
             });
     }
 
@@ -41,6 +45,16 @@ export class StockFinder{
     }
 
     render(){
+        let content = (<ul>{this.searchResults.map(result => (
+
+            <li onClick={this.onSelectSymbol.bind(this, result.symbol)}>
+                <strong>{result.symbol}</strong>{result.name}
+            </li>
+
+        ))}</ul>);
+        if(this.loading){
+            content = <rj-spinner />
+        }
         return[
             <form onSubmit={this.onFindStock.bind(this)}>
                 <input 
@@ -52,14 +66,8 @@ export class StockFinder{
                     Find
                 </button>
             </form>,
-            <ul>
-                {this.searchResults.map(result =>(
-                    <li onClick={this.onSelectSymbol.bind(this, result.symbol)}>
-                        <strong>{result.symbol}</strong>{result.name}
-                    </li>
-                ))}
-            </ul>
-            
+            content
+           
         ];
     }
 }
