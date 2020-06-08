@@ -1,0 +1,79 @@
+aside {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 30rem;
+    max-width: 80%;
+    height: 100vh;
+    background: #ccc;
+    box-shadow: 0 2px 8px rgb(0, 0, 0, 0.26);
+
+    transition: left 0.3s ease-out ;
+}
+
+:host([opened]) aside{
+    left: 0;
+}
+
+header {
+    padding: 1rem;
+    background-color: royalblue;
+    position: relative;
+}
+header h1{
+    font-size: 1.5rem;
+    color: seagreen;
+
+}
+header button{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 1.5rem;
+    color: seashell;
+    background: transparent;
+    font-size: 1.5rem;
+}
+header button:focus {
+    border: none;
+}
+
+#tabs {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 1rem 0;
+}
+#tabs button{
+    width: 30%;
+    background: white;
+    color: rebeccapurple;
+    text-align: center;
+    border: 1px solid black;
+    padding: 0.15rem 0;
+}
+
+#tabs button.active, 
+#tabs button:hover  {
+    background: black;
+    color: white;
+}
+
+#contact-info {
+    padding: 0 1.5rem;
+}
+
+#backdrop {
+    width: 100%;
+    height: 100%;
+    top:0;
+    position: fixed;
+    background: #00000099;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3 ease-out;
+}
+:host([opened]) #backdrop{
+    opacity: 1;
+    pointer-events: all;
+}

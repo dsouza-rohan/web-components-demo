@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+  <title>Stencil Component Starter</title>
+
+  <script type="module" src="/build/web-components-demo.esm.js"></script>
+  <script nomodule src="/build/web-components-demo.js"></script>
+
+  <style>
+    body{
+      font-family: sans-serif;
+    }
+
+    .side-nav ul {
+      list-style: none;
+    }
+    .side-nav li {
+      margin: 1rem;
+    }
+
+    .side-nav a { 
+      text-decoration: none;
+      color: black;
+    }
+
+  </style>
+
+</head>
+<body>
+
+  <rj-side-drawer title="Main Menu" >
+
+    <nav class="side-nav">
+      <ul>
+        <li><a href="">Item A</a></li>
+        <li><a href="">Item B</a></li>
+        <li><a href="">Item C</a></li>
+        <li><a href="">Item D</a></li>
+
+      </ul>
+    </nav>
+
+  </rj-side-drawer>
+
+  <rj-simple-modal>
+    <h1 slot="title">Please Confirm Items!!</h1>
+    <p>Please confirm if you want to contineu to the main site!!</p>
+  </rj-simple-modal>
+
+  
+  <button id="show-drawer">Open SideMenu</button>
+  <button id="show-modal">Open Modal</button>
+
+
+  <p>
+    This is sample text added here...for
+    <rj-simple-tooltip text="Sample Tooltip"> web components </rj-simple-tooltip> demo!!
+  </p>
+  <p>
+    This is a sample
+    <rj-simple-tooltip text="Sample Tooltip">text here</rj-simple-tooltip> 
+    are a new topic!!
+  </p>
+  <p>
+    The developer is
+    <rj-simple-tooltip>Rohan Dsouza</rj-simple-tooltip> 
+    ,are a new topic!!
+  </p>
+
+  <rj-todo-list list-name="My Todo List">
+  
+  </rj-todo-list>
+  
+
+  <!-- <rj-stock-price stock-symbol="APPL">
+    
+  </rj-stock-price> -->
+
+  <!-- <rj-stock-finder>
+    
+  </rj-stock-finder> -->
+
+  <script>
+    
+    const myModal = document.querySelector('rj-simple-modal');
+    const myDrawer = document.querySelector('rj-side-drawer');
+
+    myModal.addEventListener('confirm-event', () => {
+        console.log('cfe2')
+    });
+    myModal.addEventListener('cancel-event', () => {
+        console.log('ce2')
+    });
+
+    const btn = document.querySelector("#show-modal");
+    btn.addEventListener('click',() => {
+      myModal.open();
+    })
+
+    const btn2 = document.querySelector("#show-drawer");
+      btn2.addEventListener('click', () => {
+        myDrawer.open();
+      })
+   
+    // console.log(myModal)
+  </script>
+
+</body>
+</html>

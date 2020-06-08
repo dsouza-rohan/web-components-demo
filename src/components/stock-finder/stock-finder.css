@@ -1,0 +1,54 @@
+:host{
+    font-family: sans-serif;
+    border: 2px solid purple;
+    margin: 2rem;
+    padding: 1rem;
+    display: block;
+    width: 20rem;
+    max-width: 100%;
+}
+
+form input {
+    font: inherit;
+    color: purple;
+    padding: 0.15rem 1rem;
+    margin-bottom: 0.5rem;
+
+}
+form input:focus,
+form input:active,
+form button:focus,
+form input:active{
+    outline: none;
+    background-color: violet;
+
+}
+
+form button {
+    font: inherit;
+    padding: 0.25rem 5rem;
+    border: 1px solid purple;
+    background-color: white;
+}
+form button:disabled {
+    background-color: #ccc;
+    color: white;
+    pointer-events: none;
+}
+
+ul{
+    margin: 0;
+    list-style: none;
+    padding: 0;
+}
+li{
+    margin: 0.25rem 0;
+    padding: 0.25rem;
+    border: 1px solid rosybrown;
+}
+li:hover,
+li:active{
+    background: purple;
+    color: white;
+    cursor: pointer;
+}

@@ -1,0 +1,52 @@
+:host{
+    font-family: sans-serif;
+    border: 1px solid green;
+    
+    display: block;
+    width: 20rem;
+    max-width: 100%;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+li input[type='checkbox'] {
+    
+    color: purple;
+    margin: 0;
+    padding: 0;
+    float: right;
+    width: 20px;
+    height: 20px;
+}
+
+li input {
+    font: inherit;
+    color: purple;
+    padding: 0.15rem 0.5rem;
+    margin-bottom: 0.5rem;
+
+}
+li input:focus,
+li input:active,
+li button:focus,
+li input:active{
+    outline: none;
+    background-color: violet;
+
+}
+
+li button {
+    float: right;
+    margin-left: 1rem;
+    border: 1px solid purple;
+    background-color: white;
+}
+li button:disabled {
+    background-color: #ccc;
+    color: white;
+    pointer-events: none;
+}
+
+.item-done {
+    text-decoration: line-through;
+}
